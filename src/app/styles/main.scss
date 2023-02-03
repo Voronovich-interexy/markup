@@ -403,3 +403,9 @@ input {
       width: 45%;
    }
 }
+
+@media screen and (min-width: 1440px) and (max-width: 1920px) {
+   .article {
+      max-width: 100%;
+   }
+}

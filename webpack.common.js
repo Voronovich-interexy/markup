@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, 'src/index.js'),
+    main: path.resolve(__dirname, 'src/app/index.js'),
   },
   module: {
     rules: [
@@ -17,7 +17,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Markup',
       filename: 'index.html',
-      template: 'src/template.html',
+      template: 'src/app/template.html',
     }),
   ],
 };
