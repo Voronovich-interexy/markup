@@ -18,6 +18,7 @@ module.exports = {
       title: 'Markup',
       filename: 'index.html',
       template: 'src/app/template.html',
+      inject: 'body',
     }),
   ],
 };
