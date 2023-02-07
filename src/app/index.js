@@ -36,15 +36,13 @@ function frameAnimate(maxXPosition) {
   let speedX = 10;
   let time;
 
-  function step() {
+  function step(ts) {
     window.requestAnimationFrame(step);
-    let now = new Date().getTime();
-    let dt = now - (time || now);
+    let dt = ts - (time || ts);
 
-    time = now;
+    time = ts;
 
     positionX += speedX * ((dt / 1000) * 60);
-    console.log((dt / 1000) * 60);
 
     block.style.transform = `translateX(${positionX}px)`;
 
