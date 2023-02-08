@@ -58,22 +58,21 @@
           </header>
           <div class="content__wrapper">
             <section class="content__wrapper-article">
-              <article class="article">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem at mollitia
-                explicabo vero rem asperiores dolorum debitis eum ipsam. Animi magnam voluptates
-                officia veniam aut, odit repellat tenetur minima suscipit? Lorem ipsum dolor, sit
-                amet consectetur adipisicing elit. Exercitationem at mollitia explicabo vero rem
-                asperiores dolorum debitis eum ipsam. Animi magnam voluptates officia veniam aut,
-                odit repellat tenetur minima suscipit? Lorem ipsum dolor, sit amet consectetur
-                adipisicing elit. Exercitationem at mollitia explicabo vero rem asperiores dolorum
-                debitis eum ipsam. Animi magnam voluptates officia veniam aut, odit repellat tenetur
-                minima suscipit?
-                <div class="square__container">
-                  <div class="running__square"></div>
-                </div>
-              </article>
+              <div class="search">
+                <input
+                  autocomplete="off"
+                  id="search"
+                  type="text"
+                  class="input"
+                  placeholder="search..."
+                />
+                <ul id="match-list"></ul>
+                <article class="article article-api">Choose a character</article>
+              </div>
+              <article class="article article-chars"></article>
 
               <article class="article">
+                <b>CSS ANIMATION</b>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem at mollitia
                 explicabo vero rem asperiores dolorum debitis eum ipsam. Animi magnam voluptates
                 officia veniam aut, odit repellat tenetur minima suscipit? Lorem ipsum dolor, sit
@@ -88,7 +87,7 @@
                 </div>
               </article>
               <article class="article">
-                <b>TFRAME</b>
+                <b>REQUEST ANIMATION FRAME</b>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem at mollitia
                 explicabo vero rem asperiores dolorum debitis eum ipsam. Animi magnam voluptates
                 officia veniam aut, odit repellat tenetur minima suscipit? Lorem ipsum dolor, sit
@@ -103,7 +102,7 @@
                 </div>
               </article>
               <article class="article">
-                <b>TIMEOUT</b>
+                <b>TIMEOUT ANIMATION</b>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem at mollitia
                 explicabo vero rem asperiores dolorum debitis eum ipsam. Animi magnam voluptates
                 officia veniam aut, odit repellat tenetur minima suscipit? Lorem ipsum dolor, sit
@@ -117,16 +116,6 @@
                   <div class="running__square-js"></div>
                 </div>
               </article>
-              <div class="search">
-                <input
-                  autocomplete="off"
-                  id="search"
-                  type="text"
-                  class="input"
-                  placeholder="search..."
-                />
-                <ul id="match-list"></ul>
-              </div>
             </section>
             <aside class="aside">
               <div class="tab">
