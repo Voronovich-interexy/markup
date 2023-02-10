@@ -546,3 +546,10 @@ input {
 .article-chars {
    margin: 0 auto;
 }
+
+.canvas__chart {
+   width: 100%;
+   canvas {
+      width: 100%;
+   }
+}
