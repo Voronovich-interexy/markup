@@ -10,5 +10,4 @@ module.exports = merge(common, {
     filename: '[name][contenthash].js',
     clean: true,
   },
-  devtool: 'source-map',
 });

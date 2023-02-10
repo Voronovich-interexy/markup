@@ -4,7 +4,7 @@ const worker = new Worker('../worker.js');
 
 const plugin = {
   id: 'customCanvasBackgroundColor',
-  beforeDraw: (chart, args, options) => {
+  beforeDraw: (chart: any, args: any, options: any) => {
     const { ctx } = chart;
     ctx.save();
     ctx.globalCompositeOperation = 'destination-over';
@@ -15,7 +15,7 @@ const plugin = {
 };
 
 worker.onmessage = (e) => {
-  new Chart(document.getElementById('line-chart'), {
+  new Chart(document.getElementById('line-chart') as HTMLCanvasElement, {
     type: 'line',
     data: {
       labels: e.data.xVal,
@@ -24,7 +24,7 @@ worker.onmessage = (e) => {
           data: e.data.yVal,
           label: 'Some info',
           borderColor: '#3e95cd',
-          fill: false,
+          fill: true,
           backgroundColor: '#3e95cd',
         },
       ],
@@ -39,7 +39,7 @@ worker.onmessage = (e) => {
           color: '#e2c9ff',
         },
       },
-    },
+    } as any,
     plugins: [plugin],
   });
 };

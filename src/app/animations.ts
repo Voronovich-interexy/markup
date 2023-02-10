@@ -4,16 +4,17 @@
 // timestamp
 // ширина артикла
 // ширина квадрата
+
 window.onload = () => {
   const container = document.querySelector('.square__container-js');
   const maxXPosition = parseInt(getComputedStyle(container).width);
   const timeBlock = document.querySelector('.running__square-js');
   const frameBlock = document.querySelector('.running__square-frame');
-  timeoutAnimate(maxXPosition, timeBlock);
-  frameAnimate(maxXPosition, frameBlock);
+  timeoutAnimate(maxXPosition, timeBlock as HTMLDivElement);
+  frameAnimate(maxXPosition, frameBlock as HTMLDivElement);
 };
 
-function timeoutAnimate(maxXPosition, block) {
+function timeoutAnimate(maxXPosition: number, block: HTMLDivElement) {
   const refreshRate = 10;
 
   let speedX = 3;
@@ -32,12 +33,12 @@ function timeoutAnimate(maxXPosition, block) {
   }, refreshRate);
 }
 
-function frameAnimate(maxXPosition, block) {
+function frameAnimate(maxXPosition: number, block: HTMLDivElement) {
   let positionX = 0;
   let speedX = 400;
   let prevTime = 0;
 
-  function step(time) {
+  function step(time: number) {
     if (!prevTime) {
       prevTime = time;
     }
@@ -59,5 +60,5 @@ function frameAnimate(maxXPosition, block) {
     window.requestAnimationFrame(step);
   }
   let ss = window.requestAnimationFrame(step);
-  window.blur(() => cancelAnimationFrame(ss));
+  window.addEventListener('blur', (_: any): any => cancelAnimationFrame(ss));
 }

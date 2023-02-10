@@ -1,11 +1,43 @@
 import axios from 'axios';
 
+// =========== Typization ==========
+
+type RickMortyData = {
+  id: number;
+  name: string;
+};
+
+type ArrayOfChars = {
+  data: {
+    name: string;
+    gender: string;
+    species: string;
+    image: string;
+    location: {
+      name: string;
+    };
+    origin: {
+      name: string;
+    };
+  };
+};
+
+type SingleChar = {
+  name: string;
+  gender: string;
+  species: string;
+  image: string;
+  location: {
+    name: string;
+  };
+};
+
 //  =========== DOM manipulations ==========
 
-const search = document.getElementById('search');
-const matchList = document.getElementById('match-list');
-const apiInfoArticle = document.querySelector('.article-api');
-const articleForChars = document.querySelector('.article-chars');
+const search = document.getElementById('search') as HTMLInputElement | null;
+const matchList = document.getElementById('match-list') as HTMLUListElement | null;
+const apiInfoArticle = document.querySelector('.article-api') as HTMLElement | null;
+const articleForChars = document.querySelector('.article-chars') as HTMLElement | null;
 const idsToFetch = [1, 2, 3, 4];
 
 const deleteInfo = () => {
@@ -16,9 +48,9 @@ const deleteInfo = () => {
   }
 };
 
-const createLi = (data) => {
+const createLi = (data: RickMortyData) => {
   let li = document.createElement('li');
-  li.setAttribute('data-value', data.id);
+  li.setAttribute('data-value', data.id.toString());
   li.setAttribute('data-name', data.name);
   li.innerText = data.name;
   if (data.name !== 'no matches') {
@@ -27,18 +59,18 @@ const createLi = (data) => {
   return li;
 };
 
-const outputHtml = (matches) => {
+const outputHtml = (matches: Array<Object>) => {
   if (matches.length > 0) {
     matchList.innerHTML = '';
-    matches.map((match) => matchList.append(createLi(match)));
+    matches.map((match) => matchList.append(createLi(match as RickMortyData)));
   } else {
     apiInfoArticle.innerHTML = '';
     matchList.innerHTML = '';
-    matchList.append(createLi({ id: 'no matches', name: 'no matches' }));
+    matchList.append(createLi({ id: -1, name: 'no matches' }));
   }
 };
 
-const renderFourChars = (data) => {
+const renderFourChars = (data: ArrayOfChars) => {
   const infoDiv = document.createElement('div');
   infoDiv.classList.add('info-div');
 
@@ -59,7 +91,7 @@ const renderFourChars = (data) => {
   articleForChars.append(infoDiv);
 };
 
-const renderSingleChar = (fetchedChar) => {
+const renderSingleChar = (fetchedChar: SingleChar) => {
   let imgForChar = document.createElement('img');
   let paragraphName = document.createElement('p');
   let paragraphGender = document.createElement('p');
@@ -80,7 +112,7 @@ axios.interceptors.response.use((response) => {
   return response;
 });
 
-const getData = async (text) => {
+const getData = async (text: string) => {
   try {
     const result = await axios.get(`https://rickandmortyapi.com/api/character/?name=${text}`);
     return result.data.results;
@@ -89,7 +121,7 @@ const getData = async (text) => {
   }
 };
 
-const fetchFourChars = async (ids) => {
+const fetchFourChars = async (ids: Array<number>) => {
   const fetchedArray = ids.map((id) =>
     axios.get(`https://rickandmortyapi.com/api/character/${id}`),
   );
@@ -101,9 +133,9 @@ const fetchFourChars = async (ids) => {
   });
 };
 
-const searchValues = async (searchText) => {
+const searchValues = async (searchText: string) => {
   let dataToSearch = await getData(searchText);
-  let matches = dataToSearch.filter(async (data) => {
+  let matches = dataToSearch.filter(async (data: SingleChar) => {
     const regex = new RegExp(`^${searchText}`, 'gi');
     return data.name.match(regex);
   });
@@ -116,12 +148,12 @@ const searchValues = async (searchText) => {
   outputHtml(matches.slice(0, 10));
 };
 
-const getChar = async (id) => {
+const getChar = async (id: number | string) => {
   const result = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
   return result.data;
 };
 
-const addDataToAtricle = async (id) => {
+const addDataToAtricle = async (id: string) => {
   apiInfoArticle.innerHTML = '';
   let fetchedChar = await getChar(id);
   renderSingleChar(fetchedChar);
